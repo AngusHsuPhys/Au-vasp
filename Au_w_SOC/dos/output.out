@@ -1,0 +1,75 @@
+ 
+:: initializing oneAPI environment ...
+   slurm_script: BASH_VERSION = 4.2.46(2)-release
+:: advisor -- latest
+:: ccl -- latest
+:: clck -- latest
+:: compiler -- latest
+:: dal -- latest
+:: debugger -- latest
+:: dev-utilities -- latest
+:: dnnl -- latest
+:: dpcpp-ct -- latest
+:: dpl -- latest
+:: inspector -- latest
+:: intelpython -- latest
+:: ipp -- latest
+:: ippcp -- latest
+:: ipp -- latest
+:: itac -- latest
+:: mkl -- latest
+:: mpi -- latest
+:: tbb -- latest
+:: vpl -- latest
+:: vtune -- latest
+:: oneAPI environment initialized ::
+ 
+ running on  128 total cores
+ distrk:  each k-point on   64 cores,    2 groups
+ distr:  one band on    8 cores,    8 groups
+ using from now: INCAR     
+ vasp.5.4.4.18Apr17-6-g9f103f2a35 (build Mar 08 2022 14:55:45) complex          
+  
+ POSCAR found type information on POSCAR  Au
+ POSCAR found :  1 types and       1 ions
+ scaLAPACK will be used
+
+ ----------------------------------------------------------------------------- 
+|                                                                             |
+|           W    W    AA    RRRRR   N    N  II  N    N   GGGG   !!!           |
+|           W    W   A  A   R    R  NN   N  II  NN   N  G    G  !!!           |
+|           W    W  A    A  R    R  N N  N  II  N N  N  G       !!!           |
+|           W WW W  AAAAAA  RRRRR   N  N N  II  N  N N  G  GGG   !            |
+|           WW  WW  A    A  R   R   N   NN  II  N   NN  G    G                |
+|           W    W  A    A  R    R  N    N  II  N    N   GGGG   !!!           |
+|                                                                             |
+|      You have enabled k-point parallelism (KPAR>1).                         |
+|      This developmental code was originally  written by Paul Kent at ORNL,  |
+|      and carefully double checked in Vienna.                                |
+|      GW as well as linear response parallelism added by Martijn Marsman     |
+|      and Georg Kresse.                                                      |
+|      Carefully verify results versus KPAR=1.                                |
+|      Report problems to Paul Kent and Vienna.                               |
+|                                                                             |
+ ----------------------------------------------------------------------------- 
+
+ LDA part: xc-table for Pade appr. of Perdew
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ...
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.690598897994E+02    0.69060E+02   -0.59350E+03  5792   0.982E+02
+DAV:   2    -0.221042069170E+01   -0.71270E+02   -0.66263E+02  6928   0.234E+02
+DAV:   3    -0.378156645817E+01   -0.15711E+01   -0.15648E+01  7104   0.345E+01
+DAV:   4    -0.378928355233E+01   -0.77171E-02   -0.77167E-02  6992   0.257E+00
+DAV:   5    -0.378936457384E+01   -0.81022E-04   -0.81026E-04  7192   0.277E-01    0.899E+00
+DAV:   6    -0.358980611912E+01    0.19956E+00   -0.12424E-01  6672   0.405E+00    0.723E+00
+DAV:   7    -0.350628227149E+01    0.83524E-01   -0.22483E-01  6456   0.548E+00    0.449E+00
+DAV:   8    -0.350351935303E+01    0.27629E-02   -0.84884E-03  6608   0.848E-01    0.233E+00
+DAV:   9    -0.350272380717E+01    0.79555E-03   -0.18697E-04  6808   0.135E-01    0.210E-01
+DAV:  10    -0.350272965252E+01   -0.58453E-05   -0.54872E-06  7088   0.221E-02    0.305E-02
+DAV:  11    -0.350273150927E+01   -0.18568E-05   -0.31660E-07  7016   0.563E-03    0.325E-02
+DAV:  12    -0.350273140724E+01    0.10204E-06   -0.13342E-07  6760   0.407E-03    0.354E-04
+DAV:  13    -0.350273140738E+01   -0.14381E-09   -0.11910E-09  3752   0.307E-04
+   1 F= -.35027314E+01 E0= -.35027314E+01  d E =0.000000E+00  mag=    -0.0000     0.0000     0.0000
