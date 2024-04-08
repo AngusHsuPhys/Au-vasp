@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --job-name=Au
+#SBATCH --output=output.out
+#SBATCH --error=error.error
+#SBATCH --time=3-00:00:00
+#SBATCH --mem=0
+#SBATCH --ntasks-per-node 128
+#SBATCH --partition=bansil2
+#SBATCH -N 2
+#SBATCH --constraint=ib,zen2
+
+source /shared/centos7/intel/oneapi/2021.3.0/setvars.sh
+
+BIN=/work/bansil/bghosh/Softwares/vasp.544.mlwf.patch/bin/vasp_ncl
+
+#export OMP_NUM_THREADS=4
+#export OMP_PLACES=sockets
+#export OMP_PROC_BIND=close
+#export OMP_STACKSIZE=512m
+#export I_MPI_PIN_DOMAIN=omp
+#export I_MPI_PIN=yes
+#export I_MPI_FABRICS=shm
+#export I_MPI_DEBUG=4
+
+mpirun -n 128 /work/bansil/bghosh/Softwares/wannier90/wannier90-3.1.0/wannier90.x wannier90
