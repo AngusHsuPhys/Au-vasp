@@ -1,1 +1,1 @@
-SCF -> BANDS -> wann -> post
+SCF -> BANDS -> Executable -> wann -> post
