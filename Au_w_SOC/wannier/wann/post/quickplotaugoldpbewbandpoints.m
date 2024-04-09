@@ -1,7 +1,7 @@
 clear all
 %READ IN FOR WANNIER
-numk=216;
-numwann=10;
+numk=491;
+numwann=16;
 lenkwann=numk*numwann;
 fileID = fopen('wannier90_geninterp.dat','r');
 formatSpec='         %d   %f   %f   %f   %f\n';
@@ -11,15 +11,7 @@ fgets(fileID);
 temp = fscanf(fileID,formatSpec,[5,lenkwann]);
 fclose(fileID);
 wannread=temp.';
-b=1;
-kp=1;
-for i = 1:lenkwann
-    wannenergy(kp,b)=wannread(i,5);
-    if mod(b,numwann)==0;
-        kp=mod(kp,numk)+1;
-    end
-    b=mod(b,numwann)+1;
-end
+
 %----------------------------------------------%
 [energyd,total_dosd,efermid,pdosd] = import_doscar('DOSCARdos');
 [eigenvalues,kpoints,nelect] = import_eigenval('EIGENVAL');
@@ -66,14 +58,36 @@ z=0;
 for i = kinterest-NKline:-1*NKline:NKline
     eigenvalues((ktotal-kinterest+1)+i,:,:)=[];
     dx2((ktotal-kinterest+1)+i,:)=[];
+    wannread((ktotal-kinterest+1)+i,:,:)=[]
     dxy((ktotal-kinterest+1)+i,:)=[];
     dxz((ktotal-kinterest+1)+i,:)=[];
     dyz((ktotal-kinterest+1)+i,:)=[];
     dz2((ktotal-kinterest+1)+i,:)=[];
     z=z+1;
 end
+
+b=1;
+kp=1;
+j = 1;
+check = 1;
+for i = 1:size(wannread,1)
+    kp = wannread(i,1);
+    if kp == check;
+        wannenergy(kp,b)=wannread(i,5);
+        b=mod(b,numwann)+1;
+    elseif kp ~= check;
+        check = kp;
+        b = 1;
+    end
+    % if mod(b,numwann)==0;
+    %     kp=mod(kp,numk)+1;
+    % end
+end
+
+
+
 %Max and min of plot
-emax = 4;
+emax = 10;
 emin = -10;
 % z=0;
 % for i = kinterest-NKline:-1*NKline:NKline
@@ -133,7 +147,7 @@ hold on
 %Plot element and orbital decomposed
 %For s-p. Insert atom
 % for i = 1:4
-%      plot(super(:,i,3),energyd-efermid);
+%      plot(super(:,i,1),energyd-efermid);
 % end
 %For d. Insert atom
 for i = 5:9
@@ -206,7 +220,7 @@ pathmag(2)=norm(highsymcart(2,:)-highsymcart(3,:)); %X->W
 pathmag(3)=norm(highsymcart(3,:)-highsymcart(4,:)); %W->K
 pathmag(4)=norm(highsymcart(4,:)-highsymcart(1,:)); %K->G
 pathmag(5)=norm(highsymcart(1,:)-highsymcart(5,:)); %G->L
-pathmag(6)=norm(highsymcart(5,:)-highsymcart(6,:));%L->U
+pathmag(6)=norm(highsymcart(5,:)-highsymcart(6,:)); %L->U
 pathmag(7)=norm(highsymcart(6,:)-highsymcart(3,:)); %U->W
 pathmag(8)=norm(highsymcart(3,:)-highsymcart(5,:)); %W->L
 pathmag(9)=norm(highsymcart(5,:)-highsymcart(4,:)); %L->K
@@ -230,7 +244,7 @@ if spin == 0
     %plot(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:),'b');
     %plot(points,eigenvalues((ktotal-kinterest+1):ktotal-z,85:85+128),'b');
     hold on
-    scatter(points,wannenergy,20,'r','filled');
+    scatter(points,wannenergy-efermid,'r','filled');
     %eg
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dx2((ktotal-kinterest+1):ktotal-z,:)*50,[0.30,0.75,0.93],'filled');
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dz2((ktotal-kinterest+1):ktotal-z,:)*50,[0.49,0.18,0.56],'filled');
