@@ -1,5 +1,5 @@
 kpoints along symmetry lines
-36 ! 11 intersections
+50 ! 11 intersections
 line mode
 rec
 0.0000 0.0000 0.0000 ! Gamma
