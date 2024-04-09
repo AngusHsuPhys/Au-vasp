@@ -6,7 +6,7 @@
 #SBATCH --mem=0
 #SBATCH --ntasks-per-node 128
 #SBATCH --partition=bansil2
-#SBATCH -N 2
+#SBATCH -N 1
 #SBATCH --constraint=ib,zen2
 
 module load intel/compilers-2022.0.1
