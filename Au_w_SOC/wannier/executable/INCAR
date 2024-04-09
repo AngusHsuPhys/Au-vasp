@@ -1,0 +1,75 @@
+SYSTEM=Au
+ISMEAR=-5
+SIGMA=0.001
+!NSW=30
+!ISIF=3
+!IBRION = 2
+ICHARG = 2
+!ISTART = 1
+ISYM = -1
+
+NEDOS = 9999
+NELM = 500
+NBANDS = 24
+
+! ??Print??
+!
+!LVTOT = .TRUE.
+!LVHAR = .TRUE.
+LWAVE = .True.
+!LCHARG = .FALSE.
+!
+
+!!vanderwaals
+!GGA      = MK
+!LUSE_VDW = .TRUE.
+!IVDW_NLC = 1
+!PARAM1   = 0.1234
+!PARAM2   = 0.711357
+!Zab_vdW  = -1.8867
+!AGGAC    = 0.0000
+!LASPH = .TRUE.
+!!
+
+!! SCAN !!
+GGA     = PE
+!METAGGA = SCAN
+LASPH = .TRUE.
+!ALGO = F
+ADDGRID=.TRUE.
+!LMIXTAU=.TRUE.
+!!!!!!!!
+
+!! Accurate results (From James) !!
+PREC      =  A
+EDIFF     =  1E-07
+EDIFFG    =  -.008
+ENCUT     =  600
+!ENAUG     =  750
+!!
+
+
+!! Linear Mixing !!
+AMIX      =  0.2
+AMIX_MAG  =  0.8
+BMIX      =  0.00001
+BMIX_MAG  =  0.00001
+
+LREAL   = FALSE
+LORBIT  = 11
+!ISPIN   = 2
+LSORBIT =.TRUE.
+
+
+!! Init. Moments
+!   Sr   Se
+!    1    1
+ 
+MAGMOM = 3*0
+
+
+LPLANE = .TRUE.
+!KPAR = 2
+NCORE   = 8
+LSCALU = .FALSE.
+NSIM   = 4
