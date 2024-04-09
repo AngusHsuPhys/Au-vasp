@@ -1,26 +1,4 @@
 clear all
-%READ IN FOR WANNIER
-numk=216;
-numwann=10;
-lenkwann=numk*numwann;
-fileID = fopen('wannier90_geninterp.dat','r');
-formatSpec='         %d   %f   %f   %f   %f\n';
-fgets(fileID);
-fgets(fileID);
-fgets(fileID);
-temp = fscanf(fileID,formatSpec,[5,lenkwann]);
-fclose(fileID);
-wannread=temp.';
-b=1;
-kp=1;
-for i = 1:lenkwann
-    wannenergy(kp,b)=wannread(i,5);
-    if mod(b,numwann)==0;
-        kp=mod(kp,numk)+1;
-    end
-    b=mod(b,numwann)+1;
-end
-%----------------------------------------------%
 [energyd,total_dosd,efermid,pdosd] = import_doscar('DOSCARdos');
 [eigenvalues,kpoints,nelect] = import_eigenval('EIGENVAL');
 [geometry] = import_poscar('POSCAR');
@@ -230,14 +208,13 @@ if spin == 0
     %plot(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:),'b');
     %plot(points,eigenvalues((ktotal-kinterest+1):ktotal-z,85:85+128),'b');
     hold on
-    scatter(points,wannenergy,20,'r','filled');
     %eg
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dx2((ktotal-kinterest+1):ktotal-z,:)*50,[0.30,0.75,0.93],'filled');
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dz2((ktotal-kinterest+1):ktotal-z,:)*50,[0.49,0.18,0.56],'filled');
     %t2g
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dxy((ktotal-kinterest+1):ktotal-z,:)*50,[0.85,0.33,0.10],'filled');
     %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dxz((ktotal-kinterest+1):ktotal-z,:)*50,[0.47,0.67,0.19],'filled');
-    %scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dyz((ktotal-kinterest+1):ktotal-z,:)*50,[0.93,0.69,0.13],'filled');
+    scatter(points,eigenvalues((ktotal-kinterest+1):ktotal-z,:)-efermid,dyz((ktotal-kinterest+1):ktotal-z,:)*50,[0.93,0.69,0.13],'filled');
     hold off
 end
 if spin == 1
